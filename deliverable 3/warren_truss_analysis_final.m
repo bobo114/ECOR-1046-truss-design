@@ -1,11 +1,11 @@
 n = 13; % number of joists
-Dj = 1.224E3;
+Dj = 1.53E3;
 Pf = 118.7E3; %pf in newtons
 
 l = 40; % length in m
 w = l/(n+1); % joist spacing
 
-height = 4.24;% height in m
+height = 4.25;% height in m
 
 
 
