@@ -5,7 +5,7 @@ Pj = 118.7E3; %pf in newtons
 l = 40; % length in m
 w = l/(n+1); % joist spacing
 
-height = 4.24;% height in m
+height = 4:;% height in m
 
 
 
