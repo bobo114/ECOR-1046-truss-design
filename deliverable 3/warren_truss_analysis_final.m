@@ -1,6 +1,6 @@
 n = 13; % number of joists
 Dj = 1.224E3;
-Pj = 118.7E3; %pf in newtons
+Pf = 118.7E3; %pf in newtons
 
 l = 40; % length in m
 w = l/(n+1); % joist spacing
@@ -38,11 +38,11 @@ for i = 1:1:loop_length
              total_weight = 1.25*total_weight;
         end
         
-        Reaction_At_A_from_roof = (n/2)*Pj; % roof weight /2
+        Reaction_At_A_from_roof = (n/2)*Pf; % roof weight /2
         Reaction_At_A_from_OWSJ = (n/2)*Dj; % OWSJ weight /2
         
         R_A = Reaction_At_A_from_roof + Reaction_At_A_from_OWSJ + total_weight/2 - weight_at_A ; % sum of forces at A
-        point_loads = Dj + Pj; % This is without the self weight
+        point_loads = Dj + Pf; % This is without the self weight
 
         member_loads = zeros(2, (n-1)/2); % blank member loads array filled with 0s, with indexes below:
         TOP = 1;
