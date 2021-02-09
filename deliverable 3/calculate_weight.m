@@ -1,4 +1,4 @@
-function [mass, type, max_support] = calculate_mass(force, len) 
+function [weight, type, max_support] = calculate_weight(force, len) 
 % force = N, length = m, mass = kN, type = designation, max_support = N
     load('steel_info.mat', 'steel_properties');
     phi = 0.9;
@@ -20,7 +20,6 @@ function [mass, type, max_support] = calculate_mass(force, len)
         areas = cell2mat(steel_properties(1:sp_len, AREA));
         
         option_indexes = ge(areas, min_area); % logical array of whther true
-        option_indexes = find(option_indexes);
         
         possible_options = steel_properties(option_indexes, DESIGNATION:R);
         
@@ -31,7 +30,7 @@ function [mass, type, max_support] = calculate_mass(force, len)
         weights = cell2mat(possible_options(1:sp_options_len, DEAD_LOAD));
         [min_weight_per_m, min_mass_index] = min(weights);
 
-        mass = min_weight_per_m*len;
+        weight = min_weight_per_m*len;
         type = possible_options(min_mass_index, DESIGNATION);
         max_support = phi*sigma_y*(cell2mat(possible_options(min_mass_index, AREA)));
     else % compression
@@ -65,15 +64,15 @@ function [mass, type, max_support] = calculate_mass(force, len)
         
         %2nd filter operation:
         option_indexes = ge(max_loads, force); % logical array of whether true
-        option_indexes = find(option_indexes);
+        %option_indexes = find(option_indexes)
         possible_options = possible_options(option_indexes, DESIGNATION:R);
         f = f(option_indexes); % filter for later use in calculating max force
         
         %find min mass
-        weights = cell2mat(possible_options(1:length(option_indexes), DEAD_LOAD));
+        weights = cell2mat(possible_options(1:size(possible_options, 1), DEAD_LOAD));
         [min_weight_per_m, min_mass_index] = min(weights);
 
-        mass = min_weight_per_m*len;
+        weight = min_weight_per_m*len;
         type = possible_options(min_mass_index, DESIGNATION);
         max_support = -phi*sigma_y*(cell2mat(possible_options(min_mass_index, AREA))*f(min_mass_index));         
         
