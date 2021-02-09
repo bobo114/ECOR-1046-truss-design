@@ -89,8 +89,6 @@ for i = 1:1:loop_length
             % method of sections solve for rest of truss:
             syms A B C;
             if(mod(j, 2) == 1) % If odd section
-%                 -j*p + R_A  - self_weight;
-%                 A=vpa(A);
                 Fy = -j*point_loads + R_A + (h/s)*A - self_weight == 0.0;
                 m = -(j*w)*R_A + point_loads*w*sum(0:(j-1)) - h*B + moments_from_self_weight == 0.0;
 
