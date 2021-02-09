@@ -1,3 +1,6 @@
+%% Warren Truss analysis main script
+% Iterative analysis including OWSJ and self weight for deliverable 3
+
 n = 13; % number of joists
 Dj = 1.53E3;
 Pf = 118.7E3; %pf in newtons

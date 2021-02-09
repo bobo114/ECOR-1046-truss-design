@@ -1,3 +1,7 @@
+%% Function to design the member based on internal force
+% Picks the truss type based on given steel section data, will always pick
+% the lightest possible member, also returns the weight and max force that
+% the member will support
 function [weight, type, max_support] = calculate_weight(force, len) 
 % force = N, length = m, mass = kN, type = designation, max_support = N
     load('steel_info.mat', 'steel_properties');

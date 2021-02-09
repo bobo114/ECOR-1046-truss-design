@@ -1,3 +1,6 @@
+%% Point load calculator function
+% calculates the factored load created at each point by the self weight of
+% the truss
 function load = point_load(letter, list)
     %letter is letter of point load, list is data_list, returns load at
     %point in N
